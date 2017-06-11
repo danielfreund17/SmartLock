@@ -226,7 +226,8 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_details_product) {
             //TODO
         } else if (id == R.id.nav_about) {
-            //TODO
+            Intent i = new Intent(MainActivity.this, AppInformationActivity.class);
+            startActivity(i);
         } else if (id == R.id.nav_product_details) {
             //NOT IN USE- CHANGE IT TO USE OTHER NEED
             //TODO
@@ -242,6 +243,17 @@ public class MainActivity extends AppCompatActivity
     public void onClick_IsMyDoorLockedButton(View v)
     {
         Intent i = new Intent(MainActivity.this, ItemIsMyDoorLockedListActivity.class);
+        startActivity(i);
+    }
+
+    public void onClick_NotesButton(View v)
+    {
+        //TODO- activity for notes
+    }
+
+    public void onClick_InfoButton(View v)
+    {
+        Intent i = new Intent(MainActivity.this, AppInformationActivity.class);
         startActivity(i);
     }
 
