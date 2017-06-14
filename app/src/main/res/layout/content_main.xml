@@ -14,59 +14,72 @@
         android:layout_height="540dp"
         android:scaleType="fitXY"
         android:src="@drawable/light_wall_background"
-        tools:layout_editor_absoluteY="3dp"
+        tools:layout_editor_absoluteY="-4dp"
         tools:layout_editor_absoluteX="2dp"/>
 
     <ImageButton
         android:id="@+id/imageButtonInfo"
-        android:layout_width="140dp"
-        android:layout_height="188dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:onClick="onClick_InfoButton"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.056"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.693"
-        app:srcCompat="@drawable/info_bttuon"/>
+        app:layout_constraintVertical_bias="0.734"
+        app:srcCompat="@drawable/btn_info" />
 
     <ImageButton
         android:id="@+id/imageButtonIsDoorLocked"
-        android:layout_width="354dp"
-        android:layout_height="131dp"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
         android:adjustViewBounds="true"
         android:background="@android:color/transparent"
-        android:onClick="onClick_IsMyDoorLockedButton"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintLeft_toRightOf="@+id/imageView2"
         app:layout_constraintRight_toLeftOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.244"
-        app:srcCompat="@drawable/wings_background"/>
+        app:layout_constraintVertical_bias="0.106"
+        app:srcCompat="@drawable/smart_lock_logo_wings" />
 
     <ImageButton
         android:id="@+id/imageButtonNotes"
-        android:layout_width="118dp"
-        android:layout_height="116dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:onClick="onClick_NotesButton"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.939"
+        app:layout_constraintHorizontal_bias="0.943"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.643"
-        app:srcCompat="@drawable/notes_button"/>
+        app:layout_constraintVertical_bias="0.734"
+        app:srcCompat="@drawable/btn_notes" />
 
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/guideline"
         app:layout_constraintGuide_begin="20dp"
-        android:orientation="horizontal"/>
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteY="20dp"
+        tools:layout_editor_absoluteX="0dp"/>
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:onClick="onClick_IsMyDoorLockedButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.904"
+        app:srcCompat="@drawable/btn_lock" />
 
 </android.support.constraint.ConstraintLayout>
