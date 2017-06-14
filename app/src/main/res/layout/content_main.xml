@@ -14,51 +14,54 @@
         android:layout_height="540dp"
         android:scaleType="fitXY"
         android:src="@drawable/light_wall_background"
-        tools:layout_editor_absoluteY="-4dp"
+        tools:layout_editor_absoluteY="3dp"
         tools:layout_editor_absoluteX="2dp"/>
 
     <ImageButton
         android:id="@+id/imageButtonInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="141dp"
+        android:layout_height="194dp"
         android:background="@android:color/transparent"
         android:onClick="onClick_InfoButton"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.056"
+        app:layout_constraintHorizontal_bias="0.008"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.734"
-        app:srcCompat="@drawable/btn_info" />
+        app:layout_constraintVertical_bias="0.662"
+        app:srcCompat="@drawable/info_bttuon"
+        tools:layout_editor_absoluteY="208dp"/>
 
     <ImageButton
         android:id="@+id/imageButtonIsDoorLocked"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
+        android:layout_width="354dp"
+        android:layout_height="131dp"
         android:adjustViewBounds="true"
         android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/imageView2"
         app:layout_constraintRight_toLeftOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.106"
-        app:srcCompat="@drawable/smart_lock_logo_wings" />
+        app:layout_constraintVertical_bias="0.042"
+        app:srcCompat="@drawable/wings_background"
+        />
 
     <ImageButton
         android:id="@+id/imageButtonNotes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
         android:background="@android:color/transparent"
         android:onClick="onClick_NotesButton"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.943"
+        app:layout_constraintHorizontal_bias="0.938"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.734"
-        app:srcCompat="@drawable/btn_notes" />
+        app:layout_constraintVertical_bias="0.611"
+        app:srcCompat="@drawable/notes_button"
+        />
 
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
@@ -79,7 +82,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.904"
-        app:srcCompat="@drawable/btn_lock" />
+        app:layout_constraintVertical_bias="0.864"
+        app:srcCompat="@drawable/is_door_locked_pic"/>
 
 </android.support.constraint.ConstraintLayout>
