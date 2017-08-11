@@ -227,7 +227,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // perform the user login attempt.
             showProgress(true);
             mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null).get();//TODO: get rid of the get()
+            mAuthTask.execute((Void) null).get();//TODO: get rid of the get()- the get() makes it sync instead of async
         }
     }
 
@@ -458,6 +458,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                // int status = mUrlConnection.getResponseCode();
 
                 //Write to POST
+                //int code = mUrlConnection.getResponseCode();
                 OutputStream os = mUrlConnection.getOutputStream();
                 os.write(mJsonObj.toString().getBytes("UTF-8"));
                 os.close();

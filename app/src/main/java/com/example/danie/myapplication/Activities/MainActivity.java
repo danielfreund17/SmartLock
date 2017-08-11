@@ -124,8 +124,15 @@ public class MainActivity extends AppCompatActivity
                 {
                     if(doorStatusChanged(currentStatus))
                     {
+                        if(currentStatus) //the door was opened and just locked
+                        {
+                            pushNotifyUserDoorStatusChanged("locked");
+                        }
+                        else
+                        {
+                            pushNotifyUserDoorStatusChanged("opened");
+                        }
                         m_DoorStatus = currentStatus;
-                        pushNotifyUserDoorStatusChanged();
                         //TODO - push notification
                         //TODO - notes
                     }
@@ -150,13 +157,32 @@ public class MainActivity extends AppCompatActivity
         return currentStatus != m_DoorStatus;
     }
 
-    private void pushNotifyUserDoorStatusChanged()
+    private void pushNotifyUserDoorStatusChanged(String status)
     {
+        String msgToUser;
+        Intent resultIntent;
+        int doorStatus = status.compareTo("opened");
+        if(doorStatus == 0)
+        {
+            msgToUser = "Your door just Opened";
+        }
+        else
+        {
+            msgToUser = "Door Locked, please view your notes.";
+        }
         NotificationCompat.Builder mBuilder =
                 (NotificationCompat.Builder) new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.twitter_door)
-                        .setContentTitle("Door Status Changed.");
-        Intent resultIntent = new Intent(this, ItemIsMyDoorLockedListActivity.class);
+                        .setContentTitle(msgToUser);
+        if(doorStatus == 0) //door opened
+        {
+            resultIntent = new Intent(this, ItemIsMyDoorLockedListActivity.class);//TODO: intent to notes if locked
+        }
+        else
+        {
+            resultIntent = new Intent(this, ItemIsMyDoorLockedListActivity.class);//TODO: intent to notes if locked
+            //TODO: Intent to notes.
+        }
         // The stack builder object will contain an artificial back stack for the
         // started Activity.
         // This ensures that navigating backward from the Activity leads out of
