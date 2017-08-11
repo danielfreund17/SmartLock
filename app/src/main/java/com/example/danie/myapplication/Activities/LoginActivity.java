@@ -227,7 +227,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // perform the user login attempt.
             showProgress(true);
             mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null).get();//TODO: get rid of the get()- the get() makes it sync instead of async
+            mAuthTask.execute((Void) null);//TODO: get rid of the get()- the get() makes it sync instead of async
         }
     }
 

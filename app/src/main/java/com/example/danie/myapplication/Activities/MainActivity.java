@@ -25,6 +25,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.danie.myapplication.Classes.SmartLockServer;
 import com.example.danie.myapplication.R;
@@ -276,6 +277,7 @@ public class MainActivity extends AppCompatActivity
 
     public void onClick_IsMyDoorLockedButton(View v)
     {
+        Toast.makeText(getApplicationContext(), "Loading...", Toast.LENGTH_LONG).show();
         Intent i = new Intent(MainActivity.this, ItemIsMyDoorLockedListActivity.class);
         startActivity(i);
     }
