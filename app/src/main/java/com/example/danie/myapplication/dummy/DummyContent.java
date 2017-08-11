@@ -22,7 +22,6 @@ public class DummyContent {
      * An array of sample (dummy) items.
      */
     public static final List<DummyItem> ITEMS = new ArrayList<DummyItem>();
-
     /**
      * A map of sample (dummy) items, by ID.
      */

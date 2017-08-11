@@ -87,19 +87,11 @@ public class ItemIsMyDoorLockedListActivity extends AppCompatActivity {
     private void testPopupMessage()
     {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(ItemIsMyDoorLockedListActivity.this);
-        builder1.setMessage("Write your message here.");
+        builder1.setMessage("Loading door status done successfully.");
         builder1.setCancelable(true);
 
         builder1.setPositiveButton(
-                "Yes",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
-
-        builder1.setNegativeButton(
-                "No",
+                "Ok",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
@@ -131,6 +123,8 @@ public class ItemIsMyDoorLockedListActivity extends AppCompatActivity {
             holder.mItem = mValues.get(position);
             holder.mIdView.setText(mValues.get(position).id);
             holder.mContentView.setText(mValues.get(position).content);
+            DummyContent.DummyItem chosenItem  = holder.mItem;
+            chosenItem.RefreshDoorStatus();
 
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -146,8 +140,6 @@ public class ItemIsMyDoorLockedListActivity extends AppCompatActivity {
                     } else {
                         Context context = v.getContext();
                         Intent intent = new Intent(context, ItemIsMyDoorLockedDetailActivity.class);
-                        DummyContent.DummyItem chosenItem  = holder.mItem;
-                        chosenItem.RefreshDoorStatus();
                         intent.putExtra(ItemIsMyDoorLockedDetailFragment.ARG_ITEM_ID, holder.mItem.id);
 
                         context.startActivity(intent);
