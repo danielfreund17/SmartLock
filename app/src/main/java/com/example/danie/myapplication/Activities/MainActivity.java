@@ -4,6 +4,8 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -161,6 +163,7 @@ public class MainActivity extends AppCompatActivity
     {
         String msgToUser;
         Intent resultIntent;
+        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         int doorStatus = status.compareTo("opened");
         if(doorStatus == 0)
         {
@@ -173,7 +176,8 @@ public class MainActivity extends AppCompatActivity
         NotificationCompat.Builder mBuilder =
                 (NotificationCompat.Builder) new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.twitter_door)
-                        .setContentTitle(msgToUser);
+                        .setContentTitle(msgToUser)
+                        .setSound(alarmSound);
         if(doorStatus == 0) //door opened
         {
             resultIntent = new Intent(this, ItemIsMyDoorLockedListActivity.class);//TODO: intent to notes if locked
