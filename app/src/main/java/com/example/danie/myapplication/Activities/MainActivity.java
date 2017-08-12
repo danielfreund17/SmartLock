@@ -189,7 +189,7 @@ public class MainActivity extends AppCompatActivity
         }
         else
         {
-            resultIntent = new Intent(this, ItemIsMyDoorLockedListActivity.class);//TODO: intent to notes if locked
+            resultIntent = new Intent(this, NotesActivity.class);//TODO: intent to notes if locked
             //TODO: Intent to notes.
         }
         // The stack builder object will contain an artificial back stack for the
@@ -251,6 +251,8 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
         int test;
         if (id == R.id.nav_notes) {
+            Intent i = new Intent(MainActivity.this, NotesActivity.class);
+            startActivity(i);
            //TODO
             // Handle the camera action
         } else if (id == R.id.nav_is_my_door_locked) {
@@ -284,6 +286,8 @@ public class MainActivity extends AppCompatActivity
 
     public void onClick_NotesButton(View v)
     {
+        Intent i = new Intent(MainActivity.this, NotesActivity.class);
+        startActivity(i);
         //TODO- activity for notes
     }
 
