@@ -268,7 +268,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private boolean isEmailValid(String email)
     {
         //TODO: Replace this with your own logic
-        return email.contains("@");
+        return true;
+       /// return email.contains("@");
     }
 
     private boolean isPasswordValid(String password)
@@ -422,8 +423,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         private void createJsonData() throws JSONException
         {
             mJsonObj = new JSONObject();
-            mJsonObj.put("username",mEmail.toString());
             mJsonObj.put("password",mPassword.toString());
+            mJsonObj.put("username",mEmail.toString());
+            mJsonObj.put("usermail", "@");
+            mJsonObj.put("userismanager","true");
             String test = mJsonObj.toString();
         }
 
