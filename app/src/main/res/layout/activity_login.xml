@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context="com.example.danie.myapplication.Activities.LoginActivity">
+    tools:context="smartlock.code.Activities.LoginActivity">
 
     <!-- Login progress -->
     <ProgressBar

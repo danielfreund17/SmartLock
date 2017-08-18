@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.example.danie.myapplication">
+          package="smartlock.code">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
@@ -20,7 +20,8 @@
         <activity
             android:name=".Activities.MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleTask"/>
         <activity
             android:name=".Activities.ItemIsMyDoorLockedListActivity"
             android:label="@string/title_itemismydoorlocked_list"
@@ -32,7 +33,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.danie.myapplication.Activities.ItemIsMyDoorLockedListActivity"/>
+                android:value=".Activities.ItemIsMyDoorLockedListActivity"/>
         </activity>
         <activity android:name=".Activities.WelcomeScreenActivity">
             <intent-filter>
