@@ -265,9 +265,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_about) {
             Intent i = new Intent(MainActivity.this, AppInformationActivity.class);
             startActivity(i);
-        } else if (id == R.id.nav_product_details) {
-            //NOT IN USE- CHANGE IT TO USE OTHER NEED
-            //TODO
+        } else if (id == R.id.register_new_user) {
+            Intent i = new Intent(MainActivity.this, RegisterActivity.class);
+            startActivity(i);
         } else if (id == R.id.nav_log_off) {
             goBackToLogin();
         }

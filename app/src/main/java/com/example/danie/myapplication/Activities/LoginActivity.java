@@ -31,6 +31,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.danie.myapplication.Classes.JsonReader;
+import com.example.danie.myapplication.Classes.LoggedInUser;
+import com.example.danie.myapplication.Classes.LoginRegisterHttpConfiguration;
 import com.example.danie.myapplication.Classes.SmartLockServer;
 import com.example.danie.myapplication.R;
 
@@ -96,7 +99,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     try
                     {
                         mTaskType = eTaskType.Login;
-                        attemptLoginOrRegister();
+                        attemptLogin();
                     }
                     catch(Exception ex)
                     {
@@ -108,25 +111,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
-        Button mRegisterButton = (Button)findViewById(R.id.email_register_button);
-        mRegisterButton.setOnClickListener((view)->{
-            try
-            {
-                mTaskType = eTaskType.Register;
-                attemptLoginOrRegister();
-            }
-            catch(Exception ex)
-            {
-
-            }
-        });
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener((view) ->
         {
                 try
                 {
                     mTaskType = eTaskType.Login;
-                    attemptLoginOrRegister();
+                    attemptLogin();
                 }
                 catch(Exception ex)
                 {
@@ -199,7 +190,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
-    private void attemptLoginOrRegister() throws ExecutionException, InterruptedException
+    private void attemptLogin() throws ExecutionException, InterruptedException
     {
         if (mAuthTask != null)
         {
@@ -434,20 +425,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         {
             try
             {
-                switch (LoginActivity.this.mTaskType)
-                {
-                    case Login:
-                        mUrl = new URL(SmartLockServer.Ip + "/smartLock/servlets/login");
-                        break;
-                    default:
-                        mUrl = new URL(SmartLockServer.Ip + "/smartLock/servlets/register");
-                }
-                mUrlConnection = (HttpURLConnection) mUrl.openConnection();
-                mUrlConnection.setConnectTimeout(5000);
-                mUrlConnection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-                mUrlConnection.setDoOutput(true);
-                mUrlConnection.setDoInput(true);
-                mUrlConnection.setRequestMethod("POST");
+                mUrl = new URL(SmartLockServer.Ip + "/smartLock/servlets/login");
+                mUrlConnection = LoginRegisterHttpConfiguration.SetUrlConnectionInfo(mUrl, "POST");
+                int test = 6;
+               //mUrlConnection = (HttpURLConnection) mUrl.openConnection();
+               //mUrlConnection.setConnectTimeout(5000);
+               //mUrlConnection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+               //mUrlConnection.setDoOutput(true);
+               //mUrlConnection.setDoInput(true);
+               //mUrlConnection.setRequestMethod("POST");
             }
             catch(Exception ex)
             {
@@ -469,17 +455,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 InputStream is = null;
                 InputStream s = mUrlConnection.getInputStream();
                 is = new BufferedInputStream(s);
-
+                String output = JsonReader.ReadJsonFromHttp(is);
                 //Recive answer from GET
-                BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-                StringBuilder total = null;
-                total = new StringBuilder(is.available());
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    total.append(line).append('\n');
-                }
+               //BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+               //StringBuilder total = null;
+               //total = new StringBuilder(is.available());
+               //String line;
+               //while ((line = reader.readLine()) != null) {
+               //    total.append(line).append('\n');
+               //}
 
-                String output = total.toString();
+               //String output = total.toString();
                 Log.d("in in loginRet", "in in loginRet");
                 Log.d("output = " + output, "output = " + output);
                 if (output.contains("true")) {
@@ -501,39 +487,20 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         {
             mAuthTask = null;
             showProgress(false);
-
-            switch (mTaskType)
-            {
-                case Login:
-                    handleLoginAnswer(success);
-                    break;
-                default:
-                    handleRegisterAnswer(success);
-            }
-
+            handleLoginAnswer(success);
         }
 
-        private void handleRegisterAnswer(Boolean success)
-        {
-            if (success == null || (success))//TODO- CHANGE THE NULL CONDITION, JUST FOR CHECKS
-            {
-                //TODO: message box says that register succeeded
-                //finish();
-            }
-            else if(success == false)
-            {
-                mPasswordView.setError("Email adress already exists");
-                mPasswordView.requestFocus();
-            }
-        }
 
         private void handleLoginAnswer(Boolean success)
         {
-            if (success == null || (success))//TODO- CHANGE THE NULL CONDITION, JUST FOR CHECKS
+            if (success == null || success)//TODO- CHANGE THE NULL CONDITION, JUST FOR CHECKS
             {
+                LoggedInUser.SetLoggedInUser(mEmail);
+                LoggedInUser.SetLoggedInPassword(mPassword);
                 Toast.makeText(getApplicationContext(), "Redirecting...",
                         Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                finish();
                 startActivity(i);
                 //finish();
             }
@@ -541,6 +508,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
+            }
+            else if(success == null)
+            {
+                Toast.makeText(getApplicationContext(), "Connection Failure!",
+                        Toast.LENGTH_SHORT).show();
             }
         }
 

@@ -46,7 +46,7 @@ dependencies {
     compile 'com.googlecode.android-query:android-query:0.24.3'
     compile 'org.apache.httpcomponents:httpcore:4.4.1'
     compile 'org.apache.httpcomponents:httpclient:4.5'
-    compile 'com.google.code.gson:gson:2.2.+'
+    compile 'com.google.code.gson:gson:2.2.4'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:support-v4:25.3.1'
     compile 'com.android.support:recyclerview-v7:25.3.1'
