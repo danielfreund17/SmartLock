@@ -23,4 +23,5 @@
     <string name="title_itemismydoorlocked_list">Items</string>
     <string name="title_itemismydoorlocked_detail">ItemIsMyDoorLocked Detail</string>
     <string name="title_activity_notes">My Notes</string>
+    <string name="title_activity_who_is_at_home">Map</string>
 </resources>

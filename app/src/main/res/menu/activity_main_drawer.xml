@@ -15,6 +15,10 @@
                     android:icon="?android:attr/actionModePasteDrawable"
                     android:title="Notes" />
                 <item
+                    android:id="@+id/nav_location"
+                    android:icon="@android:drawable/ic_menu_mapmode"
+                    android:title="Who Is At Home"/>
+                <item
                     android:id="@+id/register_new_user"
                     android:icon="@android:drawable/ic_input_add"
                     android:title="Register New User"/>
