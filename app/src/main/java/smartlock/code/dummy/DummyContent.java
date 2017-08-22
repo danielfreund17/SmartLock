@@ -65,7 +65,7 @@ public class DummyContent {
             Boolean ans = op.execute(url).get();
             if(ans == null)
             {//TODO- change to connection failure
-                return "Locked.";
+                return "Connection Failure.";
             }
             else if(ans == true)
             {
