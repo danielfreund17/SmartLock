@@ -8,7 +8,7 @@ public final class MyLocation
 {
     private  String m_UserName;
     private  double m_Latitude;
-    private  double m_Longtitude;
+    private  double m_Longitude;
 
     public void SetUserName(String username)
     {
@@ -27,7 +27,7 @@ public final class MyLocation
 
     public void SetLongtitude(double lot)
     {
-        m_Longtitude = lot;
+        m_Longitude = lot;
     }
 
     public double GetLat()
@@ -37,7 +37,7 @@ public final class MyLocation
 
     public double GetLot()
     {
-        return m_Longtitude;
+        return m_Longitude;
     }
 
     public MyLocation()
@@ -49,7 +49,7 @@ public final class MyLocation
     {
         m_UserName = user;
         m_Latitude = lat;
-        m_Longtitude = lot;
+        m_Longitude = lot;
     }
 
 }

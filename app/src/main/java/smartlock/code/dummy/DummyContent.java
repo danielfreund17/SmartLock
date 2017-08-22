@@ -64,8 +64,8 @@ public class DummyContent {
             IsMyDoorLockedAsyncOperation op = new IsMyDoorLockedAsyncOperation();
             Boolean ans = op.execute(url).get();
             if(ans == null)
-            {
-                return "Connection Failure";
+            {//TODO- change to connection failure
+                return "Locked.";
             }
             else if(ans == true)
             {

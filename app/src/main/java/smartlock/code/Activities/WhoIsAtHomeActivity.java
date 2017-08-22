@@ -81,7 +81,7 @@ public class WhoIsAtHomeActivity extends FragmentActivity implements OnMapReadyC
         }
 
         // Add a marker in Sydney and move the camera
-        mMap.addMarker(new MarkerOptions().position(TheAcademicCollege).title("האקדמית"));
+        mMap.addMarker(new MarkerOptions().position(TheAcademicCollege).title("Home"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(TheAcademicCollege));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(TheAcademicCollege, 12.0f));
     }
