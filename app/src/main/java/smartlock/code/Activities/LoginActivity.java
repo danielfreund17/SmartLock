@@ -493,7 +493,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         private void handleLoginAnswer(Boolean success)
         {
-            if (success  || success == null)//TODO- CHANGE THE NULL CONDITION, JUST FOR CHECKS
+            if (success == null || (success))//TODO- CHANGE THE NULL CONDITION, JUST FOR CHECKS
             {
                 LoggedInUser.SetLoggedInUser(mEmail);
                 LoggedInUser.SetLoggedInPassword(mPassword);
