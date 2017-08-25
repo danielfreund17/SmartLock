@@ -1,13 +1,18 @@
 package smartlock.code.Classes;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by danie on 18-Aug-17.
  */
 
 public final class MyLocation
 {
+    @SerializedName("username")
     private  String m_UserName;
+    @SerializedName("latitude")
     private  double m_Latitude;
+    @SerializedName("longitude")
     private  double m_Longitude;
 
     public void SetUserName(String username)

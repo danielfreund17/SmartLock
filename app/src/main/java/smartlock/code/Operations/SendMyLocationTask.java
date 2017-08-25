@@ -61,7 +61,7 @@ public class SendMyLocationTask extends AsyncTask<Void, Void, Boolean>
     {
         mJsonObj.put("username", LoggedInUser.getLoggedInUser());
         mJsonObj.put("latitude", m_MyLocation.GetLat());
-        mJsonObj.put("longtitude", m_MyLocation.GetLot());
+        mJsonObj.put("longitude", m_MyLocation.GetLot());
     }
 
     private void setConnectionInfo()

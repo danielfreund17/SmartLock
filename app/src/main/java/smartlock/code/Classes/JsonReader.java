@@ -20,6 +20,7 @@ public final class JsonReader
         while ((line = reader.readLine()) != null) {
             total.append(line).append('\n');
         }
+        total.deleteCharAt(total.length()-1);
 
         String output = total.toString();
         return output;

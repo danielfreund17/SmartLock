@@ -153,10 +153,10 @@ public class MainActivity extends AppCompatActivity
         {
             try
             {
-                if(m_IsActivityFinished)
-                {
-                    break; //kill the thread.
-                }
+                //if(m_IsActivityFinished)
+                //{
+                //    break; //kill the thread.
+                //}
                 _url = new URL(url);
                 m_UrlConnection = (HttpURLConnection) _url.openConnection();
                 //urlConnection.setReadTimeout(2*1000);
@@ -465,16 +465,20 @@ public class MainActivity extends AppCompatActivity
         {
             try {
                 //TODO- THIS IS JUST TEST
-                createJsonData();
-                Type listType = new TypeToken<ArrayList<MyLocation>>() {}.getType();
-                ArrayList<MyLocation> usersLoc = new Gson().fromJson(m_Json, listType);
-                UsersLocations.m_UsersLocations = usersLoc;
+                //createJsonData();
+               //Type listType = new TypeToken<ArrayList<MyLocation>>() {}.getType();
+               //ArrayList<MyLocation> usersLoc = new Gson().fromJson(m_Json, listType);
+               // UsersLocations.m_UsersLocations = usersLoc;
 
                 int status = mUrlConnection.getResponseCode();
                 InputStream s = mUrlConnection.getInputStream();
                 InputStream is = null;
                 is = new BufferedInputStream(s);
                 String output = JsonReader.ReadJsonFromHttp(is);
+                Type listType = new TypeToken<ArrayList<MyLocation>>() {}.getType();
+                ArrayList<MyLocation> usersLoc = new Gson().fromJson(output, listType);
+                UsersLocations.m_UsersLocations = usersLoc;
+
                 //TODO: finish task
                 //just for tests -----
 

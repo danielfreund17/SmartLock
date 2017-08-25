@@ -230,6 +230,7 @@ public class RegisterActivity extends AppCompatActivity
             m_RegisterJson.put("managername", loggedInUser);
             m_RegisterJson.put("managerpassword", loggedInUserPassword);
             m_RegisterJson.put("usermailtoadd",m_EmailView.getText().toString());
+            m_RegisterJson.put("passwordtoadd", m_PasswordView.getText().toString());
             m_RegisterJson.put("usernametoadd",m_UserView.getText().toString());
             m_RegisterJson.put("userismanagertoadd",m_IsManager.isChecked());
         }
@@ -251,7 +252,7 @@ public class RegisterActivity extends AppCompatActivity
         {
             try {
                 OutputStream os = mUrlConnection.getOutputStream();
-                os.write(mJsonObj.toString().getBytes("UTF-8"));
+                os.write(m_RegisterJson.toString().getBytes("UTF-8"));
                 os.close();
 
                 InputStream is = null;
@@ -308,7 +309,7 @@ public class RegisterActivity extends AppCompatActivity
             }
             else if(success == false)
             {
-                m_EmailView.setError("Email adress already exists");
+                m_EmailView.setError("Registration Failed");
                 m_EmailView.requestFocus();
             }
         }

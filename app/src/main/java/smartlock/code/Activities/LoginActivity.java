@@ -493,7 +493,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         private void handleLoginAnswer(Boolean success)
         {
-            if (success == null || success)//TODO- CHANGE THE NULL CONDITION, JUST FOR CHECKS
+            if (success  || success == null)//TODO- CHANGE THE NULL CONDITION, JUST FOR CHECKS
             {
                 LoggedInUser.SetLoggedInUser(mEmail);
                 LoggedInUser.SetLoggedInPassword(mPassword);
@@ -509,7 +509,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
             }
-            else if(success == null)
+            else
             {
                 Toast.makeText(getApplicationContext(), "Connection Failure!",
                         Toast.LENGTH_SHORT).show();
