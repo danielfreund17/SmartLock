@@ -90,8 +90,21 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                contactUsByEmail();
+            }
+
+            private void contactUsByEmail()
+            {
+                Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+                String aEmailList[] = { "smartlock@gmail.com" };
+
+                emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, aEmailList);
+                emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Dear SmartLock");
+
+                emailIntent.setType("plain/text");
+                emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Hi SmartLock!");
+
+                startActivity(emailIntent);
             }
         });
 

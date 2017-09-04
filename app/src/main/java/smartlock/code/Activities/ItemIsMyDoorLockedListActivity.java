@@ -47,14 +47,6 @@ public class ItemIsMyDoorLockedListActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         View recyclerView = findViewById(R.id.itemismydoorlocked_list);
         assert recyclerView != null;
@@ -71,11 +63,9 @@ public class ItemIsMyDoorLockedListActivity extends AppCompatActivity {
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
         try {
-            Log.d("in listactivity","in listactivity");
+            //There's a list because we made an infrastructure for having more than one door
             List<DummyContent.DummyItem> obj = DummyContent.ITEMS;
-            //testPopupMessage();
             recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(obj));
-            testPopupMessage();
         }
         catch(Exception ex)
         {
@@ -84,23 +74,6 @@ public class ItemIsMyDoorLockedListActivity extends AppCompatActivity {
         }
     }
 
-    private void testPopupMessage()
-    {
-        AlertDialog.Builder builder1 = new AlertDialog.Builder(ItemIsMyDoorLockedListActivity.this);
-        builder1.setMessage("Loading door status done successfully.");
-        builder1.setCancelable(true);
-
-        builder1.setPositiveButton(
-                "Ok",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
-
-        AlertDialog alert11 = builder1.create();
-        alert11.show();
-    }
 
     public class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
@@ -141,7 +114,7 @@ public class ItemIsMyDoorLockedListActivity extends AppCompatActivity {
                         Context context = v.getContext();
                         Intent intent = new Intent(context, ItemIsMyDoorLockedDetailActivity.class);
                         intent.putExtra(ItemIsMyDoorLockedDetailFragment.ARG_ITEM_ID, holder.mItem.id);
-
+                        ItemIsMyDoorLockedDetailActivity.SetDoorMessage(holder.mItem.details);
                         context.startActivity(intent);
                     }
                 }

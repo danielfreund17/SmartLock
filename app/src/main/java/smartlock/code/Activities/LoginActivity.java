@@ -456,16 +456,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 InputStream s = mUrlConnection.getInputStream();
                 is = new BufferedInputStream(s);
                 String output = JsonReader.ReadJsonFromHttp(is);
-                //Recive answer from GET
-               //BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-               //StringBuilder total = null;
-               //total = new StringBuilder(is.available());
-               //String line;
-               //while ((line = reader.readLine()) != null) {
-               //    total.append(line).append('\n');
-               //}
 
-               //String output = total.toString();
                 Log.d("in in loginRet", "in in loginRet");
                 Log.d("output = " + output, "output = " + output);
                 if (output.contains("true")) {

@@ -42,12 +42,14 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:layout_gravity="center_vertical|start"
         android:layout_margin="@dimen/fab_margin"
+        app:backgroundTint="?android:attr/colorBackground"
         app:layout_anchor="@+id/itemismydoorlocked_detail_container"
         app:layout_anchorGravity="top|end"
-        app:srcCompat="@android:drawable/stat_notify_chat" />
+        app:srcCompat="@drawable/whatsapp_logo_2"
+        app:fabSize="mini"/>
 
 </android.support.design.widget.CoordinatorLayout>
