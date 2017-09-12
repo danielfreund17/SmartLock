@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 /**
- * Created by danie on 18-Aug-17.
+ * This is a generic class to handle the jsons reading from the server.
  */
 
 public final class JsonReader

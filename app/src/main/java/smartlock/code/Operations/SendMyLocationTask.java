@@ -1,7 +1,7 @@
 package smartlock.code.Operations;
 
 /**
- * Created by danie on 18-Aug-17.
+ * This class sends the server the current logged in user's locations.
  */
 
 import android.os.AsyncTask;
@@ -38,23 +38,19 @@ public class SendMyLocationTask extends AsyncTask<Void, Void, Boolean>
     @Override
     protected Boolean doInBackground(Void... params)
     {
-        // TODO: attempt authentication against a network service.
         Boolean ans = null;
-        Log.d("in registerAsync", "in registerAsync");
         try
         {
             setConnectionInfo();
             createJsonData();
-            Log.d("in registerCon", "in registerCon");
-            Log.d(mUrl.toString(), mUrl.toString());
             ans = trySendLoc();
         }
         catch(Exception ex)
         {
 
         }
-        // TODO: register the new account here.
-        return ans;//TODO: return the answer from server
+
+        return ans;
     }
 
     private void createJsonData() throws JSONException
@@ -73,7 +69,7 @@ public class SendMyLocationTask extends AsyncTask<Void, Void, Boolean>
         }
         catch(Exception ex)
         {
-            //TODO: popup- login failure
+            //do nothing- the location will be sent in the next task
         }
     }
 
@@ -89,16 +85,12 @@ public class SendMyLocationTask extends AsyncTask<Void, Void, Boolean>
             is = new BufferedInputStream(s);
             String output = JsonReader.ReadJsonFromHttp(is);
 
-            Log.d("in in registerRet", "in in registerRet");
-            Log.d("output = " + output, "output = " + output);
             if (output.contains("true"))
             {
-                Log.d("returning true", "returning true");
                 return true;
             }
             else
             {
-                Log.d("returning false", "returning false");
                 return false;
             }
         }
@@ -111,6 +103,6 @@ public class SendMyLocationTask extends AsyncTask<Void, Void, Boolean>
     @Override
     protected void onPostExecute(final Boolean success)
     {
-        //TODO
+        //do nothing.
     }
 }

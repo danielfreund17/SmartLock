@@ -1,17 +1,12 @@
 package smartlock.code.Activities;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,13 +14,13 @@ import android.widget.TextView;
 
 
 import smartlock.code.R;
-import smartlock.code.dummy.DummyContent;
+import smartlock.code.dummy.DoorContent;
 
 import java.util.List;
 
 /**
- * An activity representing a list of Items. This activity
- * has different presentations for handset and tablet-size devices. On
+ * An activity representing a list of Doors.
+ * This activity has different presentations for handset and tablet-size devices. On
  * handsets, the activity presents a list of items, which when touched,
  * lead to a {@link ItemIsMyDoorLockedDetailActivity} representing
  * item details. On tablets, the activity presents the list of items and
@@ -39,6 +34,7 @@ public class ItemIsMyDoorLockedListActivity extends AppCompatActivity {
      */
     private boolean mTwoPane;
 
+    //region OnCreate
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,11 +56,13 @@ public class ItemIsMyDoorLockedListActivity extends AppCompatActivity {
             mTwoPane = true;
         }
     }
+    //endregion
 
+    //region setupRecyclerView
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
         try {
             //There's a list because we made an infrastructure for having more than one door
-            List<DummyContent.DummyItem> obj = DummyContent.ITEMS;
+            List<DoorContent.DoorItem> obj = DoorContent.ITEMS;
             recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(obj));
         }
         catch(Exception ex)
@@ -73,14 +71,17 @@ public class ItemIsMyDoorLockedListActivity extends AppCompatActivity {
             test=1;
         }
     }
+    //endregion
 
-
+    //This class is made to adapt the door to the specific view.
+    //region SimpleItemRecyclerViewAdapter Class
+    //this class's point is to adapt the item to the recycler view.
     public class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
-        private final List<DummyContent.DummyItem> mValues;
+        private final List<DoorContent.DoorItem> mValues;
 
-        public SimpleItemRecyclerViewAdapter(List<DummyContent.DummyItem> items) {
+        public SimpleItemRecyclerViewAdapter(List<DoorContent.DoorItem> items) {
             mValues = items;
         }
 
@@ -96,7 +97,7 @@ public class ItemIsMyDoorLockedListActivity extends AppCompatActivity {
             holder.mItem = mValues.get(position);
             holder.mIdView.setText(mValues.get(position).id);
             holder.mContentView.setText(mValues.get(position).content);
-            DummyContent.DummyItem chosenItem  = holder.mItem;
+            DoorContent.DoorItem chosenItem  = holder.mItem;
             chosenItem.RefreshDoorStatus();
 
             holder.mView.setOnClickListener(new View.OnClickListener() {
@@ -130,7 +131,7 @@ public class ItemIsMyDoorLockedListActivity extends AppCompatActivity {
             public final View mView;
             public final TextView mIdView;
             public final TextView mContentView;
-            public DummyContent.DummyItem mItem;
+            public DoorContent.DoorItem mItem;
 
             public ViewHolder(View view) {
                 super(view);
@@ -145,4 +146,5 @@ public class ItemIsMyDoorLockedListActivity extends AppCompatActivity {
             }
         }
     }
+    //endregion
 }

@@ -13,6 +13,12 @@ import android.widget.LinearLayout;
 import smartlock.code.R;
 
 
+/**
+ * This is the welcome screen activity animation.
+ * this activity shows up as the first thing when the app is uploading, and shows cool door animation
+ * while the app is loading.
+ *
+ */
 public class WelcomeScreenActivity extends  Activity {
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
@@ -27,6 +33,8 @@ public class WelcomeScreenActivity extends  Activity {
         setContentView(R.layout.activity_welcome_screen);
         StartAnimations();
     }
+
+    //region Animation Methods
     private void StartAnimations() {
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.alpha);
         anim.reset();
@@ -66,5 +74,6 @@ public class WelcomeScreenActivity extends  Activity {
         splashTread.start();
 
     }
+    //endregion
 
 }

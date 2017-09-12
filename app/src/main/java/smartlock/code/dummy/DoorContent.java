@@ -11,39 +11,37 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Helper class for providing sample content for user interfaces created by
- * Android template wizards.
- * <p>
- * TODO: Replace all uses of this class before publishing your app.
+ * This is the door class.
  */
-public class DummyContent {
+public class DoorContent
+{
 
     /**
-     * An array of sample (dummy) items.
+     * An array of sample (door) items.
      */
-    public static final List<DummyItem> ITEMS = new ArrayList<DummyItem>();
+    public static final List<DoorItem> ITEMS = new ArrayList<DoorItem>();
     /**
-     * A map of sample (dummy) items, by ID.
+     * A map of sample (door) items, by ID.
      */
-    public static final Map<String, DummyItem> ITEM_MAP = new HashMap<String, DummyItem>();
+    public static final Map<String, DoorItem> ITEM_MAP = new HashMap<String, DoorItem>();
 
     private static final int COUNT = 1;
 
     static {
         // Add some sample items.
-        Log.d("in dummy content","in dummy content");
         for (int i = 1; i <= COUNT; i++) {
-            addItem(createDummyItem(i));
+            addItem(createDoorItem(i));
         }
     }
 
-    private static void addItem(DummyItem item) {
+    //This method is part of the future interface for having more than one door.
+    private static void addItem(DoorItem item) {
         ITEMS.add(item);
         ITEM_MAP.put(item.id, item);
     }
 
-    private static DummyItem createDummyItem(int position) {
-        return new DummyItem(String.valueOf(position), "My Door", makeDetails(position));
+    private static DoorItem createDoorItem(int position) {
+        return new DoorItem(String.valueOf(position), "My Door", makeDetails(position));
     }
 
     private static String makeDetails(int position) {
@@ -57,7 +55,6 @@ public class DummyContent {
 
     private static String getDoorStatus() {
         //TODO- web service if door is locked
-       // String url= "http://10.0.2.2:8080/servlets/isdoorlocked";
         String url= SmartLockServer.Ip + "/smartLock/servlets/isdoorlocked";
         try
         {
@@ -78,21 +75,20 @@ public class DummyContent {
         }
         catch(Exception ex)
         {
-            Log.d("in dummycontect ex","in dummycontect ex");
-            Log.d(ex.getMessage(),ex.getMessage());
             return "Locked.";
         }
     }
 
     /**
-     * A dummy item representing a piece of content.
+     * A door single door item.
      */
-    public static class DummyItem {
+    public static class DoorItem
+    {
         public String id;
         public String content;
         public String details;
 
-        public DummyItem(String id, String content, String details) {
+        public DoorItem(String id, String content, String details) {
             this.id = id;
             this.content = content;
             this.details = details;
@@ -104,7 +100,7 @@ public class DummyContent {
         }
 
         public void RefreshDoorStatus() {
-            this.details = DummyContent.makeDetails(Integer.parseInt(id));
+            this.details = DoorContent.makeDetails(Integer.parseInt(id));
         }
     }
 }

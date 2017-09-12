@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by danie on 18-Aug-17.
+ * This class is made in order to locate all the other users's locations.
  */
 
 public final class UsersLocations

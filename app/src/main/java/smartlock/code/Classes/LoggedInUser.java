@@ -1,7 +1,7 @@
 package smartlock.code.Classes;
 
 /**
- * Created by danie on 18-Aug-17.
+ * This class saves the data of the current login user.
  */
 
 public final class LoggedInUser

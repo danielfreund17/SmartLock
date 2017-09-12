@@ -35,6 +35,12 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.concurrent.ExecutionException;
 
+
+/**
+ * This is the registration activity.
+ * when the Manager user wants to register a new user, this activity handles the request, and
+ * registers the new user to be able to use the door.
+ */
 public class RegisterActivity extends AppCompatActivity
 {
 
@@ -121,6 +127,7 @@ public class RegisterActivity extends AppCompatActivity
         }
     }
 
+    //The actual method that attempts to register new user to the door.
     public void attemptRegister() throws JSONException, ExecutionException, InterruptedException
     {
         Boolean cancel = checkLoginValidationInput();
@@ -140,6 +147,7 @@ public class RegisterActivity extends AppCompatActivity
 
     }
 
+    //region Validation methods
     private Boolean checkLoginValidationInput()
     {
         boolean cancel = false;
@@ -193,7 +201,20 @@ public class RegisterActivity extends AppCompatActivity
         return password.length() >= 4;
     }
 
+    //endregion
 
+
+    /**
+     * Represents an asynchronous registration task used to authenticate
+     * the user.
+     * The class is here because if operation success we do redirection
+     * this is the actual task that runs on the background thread and send jsons requests to the server and waits for answer.
+     * this is also a sub-class of the activity.
+     * it has 2 main methods:
+     *
+     * doInBackground (the background thread task).
+     * OnPostExecute (the method that handles the answer from the server).
+     */
     public class UserRegisterTask extends AsyncTask<Void, Void, Boolean>
     {
         private URL mUrl;

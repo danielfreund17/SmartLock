@@ -22,9 +22,15 @@ import java.io.OutputStreamWriter;
 import smartlock.code.R;
 
 
+/**
+ * This is the notes activity.
+ * this activity is made in order to let the user insert notes, and important things that he wants
+ * to make sure he's not forgetting while leaving home
+ */
 public class NotesActivity extends AppCompatActivity
 {
     EditText EditText1;
+    //region OnCreate
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,14 +48,19 @@ public class NotesActivity extends AppCompatActivity
         EditText1 = (EditText) findViewById(R.id.EditText1);
         EditText1.setText(Open("Note1.txt"));
     }
+    //endregion
 
+    //region onCreateOptionsMenu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_notes, menu);
         return true;
     }
+    //endregion
 
+    //This method is saving the note to the local user phone.
+    //region Save Method
     public void Save(String fileName) {
         try {
            //File f = new File(fileName);
@@ -63,7 +74,10 @@ public class NotesActivity extends AppCompatActivity
             Toast.makeText(this, "Exception: " + t.toString(), Toast.LENGTH_LONG).show();
         }
     }
+    //endregion
 
+    //this mathod opens the local file notes and shows the user the things he has to remember.
+    //region Open File Method
     public String Open(String fileName) {
         String content = "";
         if (FileExists(fileName)) {
@@ -85,7 +99,10 @@ public class NotesActivity extends AppCompatActivity
         }
         return content;
     }
+    //endregion
 
+    //this method checks if the file exists
+    //region File Exists
     public boolean FileExists(String fname) {
         File file = getBaseContext().getFileStreamPath(fname);
         try
@@ -101,7 +118,9 @@ public class NotesActivity extends AppCompatActivity
             return false;
         }
     }
+    //endregion
 
+    //region onOptionsItemSelected
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -115,6 +134,7 @@ public class NotesActivity extends AppCompatActivity
         }
         return super.onOptionsItemSelected(item);
     }
+    //endregion
 }
 
 

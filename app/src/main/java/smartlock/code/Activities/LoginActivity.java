@@ -63,17 +63,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      */
     private static final int REQUEST_READ_CONTACTS = 0;
     private eTaskType mTaskType;
-
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
-    /**
-     * Keep track of the login task to ensure we can cancel it if requested.
-     */
     private UserLoginTask mAuthTask = null;
 
     // UI references.
@@ -83,6 +72,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mLoginFormView;
     private View mErrorView;
 
+    //region OnCreate
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -129,7 +119,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mProgressView = findViewById(R.id.login_progress);
         mEmailView.requestFocus();
     }
+    //endregion
 
+    //region populateAutoComplete
     private void populateAutoComplete()
     {
         if (!mayRequestContacts())
@@ -139,7 +131,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         getLoaderManager().initLoader(0, null, this);
     }
+    //endregion
 
+    //region mayRequestContacts
     private boolean mayRequestContacts()
     {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M)
@@ -167,10 +161,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
         return false;
     }
+    //endregion
 
-    /**
-     * Callback received when a permissions request has been completed.
-     */
+
+    //Callback received when a permissions request has been completed.
+    //region onRequestPermissionsResult
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults)
@@ -183,13 +178,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         }
     }
-
+    //endregion
 
     /**
      * Attempts to sign in or register the account specified by the login form.
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
+    //This function is the actual call function when the user tries to login.
+    //region attemptLogin
     private void attemptLogin() throws ExecutionException, InterruptedException
     {
         if (mAuthTask != null)
@@ -221,7 +218,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mAuthTask.execute((Void) null);//TODO: get rid of the get()- the get() makes it sync instead of async
         }
     }
+    //endregion
 
+    //this functions runs before the login calls, and does local validations for the login parameters.
+    //region Login Validation Methods
     private Boolean checkLoginValidationInput(String email, String password)
     {
         boolean cancel = false;
@@ -256,6 +256,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         return cancel;
     }
 
+
     private boolean isEmailValid(String email)
     {
         //TODO: Replace this with your own logic
@@ -269,9 +270,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         return password.length() >= 4;
     }
 
+    //endregion
+
     /**
      * Shows the progress UI and hides the login form.
      */
+    //region Show progress bar to when background task is running
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     private void showProgress(final boolean show)
     {
@@ -306,7 +310,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
         }
     }
+    //endregion
 
+    //region Loader methods
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle)
     {
@@ -366,14 +372,29 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         int IS_PRIMARY = 1;
     }
 
+    //endregion
+
+
+    //region Enum Task Types
     public enum eTaskType {
         Login,Register;
     }
+    //endregion
+
     /**
-     * Represents an asynchronous login/registration task used to authenticate
+     * Represents an asynchronous login task used to authenticate
      * the user.
      * The class is here because if operation success we do redirection
+     * this is the actual task that runs on the background thread and send jsons requests to the server and waits for answer.
+     * this is also a sub-class of the activity.
+     * it has 2 main methods:
+     *
+     * doInBackground (the background thread task).
+     * OnPostExecute (the method that handles the answer from the server.
      */
+
+
+    //region User Login Async Task Class
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean>
     {
 
@@ -427,27 +448,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             {
                 mUrl = new URL(SmartLockServer.Ip + "/smartLock/servlets/login");
                 mUrlConnection = LoginRegisterHttpConfiguration.SetUrlConnectionInfo(mUrl, "POST");
-                int test = 6;
-               //mUrlConnection = (HttpURLConnection) mUrl.openConnection();
-               //mUrlConnection.setConnectTimeout(5000);
-               //mUrlConnection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-               //mUrlConnection.setDoOutput(true);
-               //mUrlConnection.setDoInput(true);
-               //mUrlConnection.setRequestMethod("POST");
             }
             catch(Exception ex)
             {
-                //TODO: popup- login failure
             }
         }
 
         private Boolean tryLoginOrRegister()
         {
             try {
-               // int status = mUrlConnection.getResponseCode();
-
-                //Write to POST
-                //int code = mUrlConnection.getResponseCode();
                 OutputStream os = mUrlConnection.getOutputStream();
                 os.write(mJsonObj.toString().getBytes("UTF-8"));
                 os.close();
@@ -457,13 +466,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 is = new BufferedInputStream(s);
                 String output = JsonReader.ReadJsonFromHttp(is);
 
-                Log.d("in in loginRet", "in in loginRet");
-                Log.d("output = " + output, "output = " + output);
                 if (output.contains("true")) {
-                    Log.d("returning true", "returning true");
                     return true;
                 } else {
-                    Log.d("returning false", "returning false");
                     return false;
                 }
             }
@@ -493,7 +498,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 Intent i = new Intent(LoginActivity.this, MainActivity.class);
                 finish();
                 startActivity(i);
-                //finish();
             }
             else if(success == false)
             {
@@ -514,5 +518,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
         }
     }
+    //endregion
 }
 

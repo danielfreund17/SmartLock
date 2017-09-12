@@ -18,7 +18,8 @@ import smartlock.code.R;
 
 
 /**
- * An activity representing a single ItemIsMyDoorLocked detail screen. This
+ * An activity representing a single Door detailed screen.
+ * The point is to have an interface for future door adding, so we can have more than one door.
  * activity is only used narrow width devices. On tablet-size devices,
  * item details are presented side-by-side with a list of items
  * in a {@link ItemIsMyDoorLockedListActivity}.
@@ -31,6 +32,8 @@ public class ItemIsMyDoorLockedDetailActivity extends AppCompatActivity {
     {
         m_DoorMessage = message;
     }
+
+    //region OnCreate
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,7 +98,9 @@ public class ItemIsMyDoorLockedDetailActivity extends AppCompatActivity {
             int text=7;
         }
     }
+    //endregion
 
+    //region onOptionsItemSelected
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
@@ -107,4 +112,5 @@ public class ItemIsMyDoorLockedDetailActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    //endregion
 }

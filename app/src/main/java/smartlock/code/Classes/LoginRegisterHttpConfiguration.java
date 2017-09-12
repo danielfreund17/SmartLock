@@ -8,7 +8,8 @@ import java.net.ProtocolException;
 import java.net.URL;
 
 /**
- * Created by danie on 18-Aug-17.
+ * This class used in order to save the configurations of the login and registrations requests,
+ * in order to prevent code reuse.
  */
 
 public final class LoginRegisterHttpConfiguration

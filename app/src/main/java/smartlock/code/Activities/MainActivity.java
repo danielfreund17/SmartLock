@@ -55,6 +55,12 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
+/**
+ * This is the main activity of the application.
+ * all the user requests happens right here,
+ * we have a menu that uses switch cases in order to navigate the user's requests
+ * we also handle here all the user phone permissions, gps locator and more.
+ */
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, LocationListener
 {

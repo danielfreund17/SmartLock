@@ -3,7 +3,8 @@ package smartlock.code.Classes;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by danie on 18-Aug-17.
+ * This class saves the user name, and his lat and lon, in order to send the server by json the user's location.
+ * than other door users can know exactly who is at home.
  */
 
 public final class MyLocation

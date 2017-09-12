@@ -17,6 +17,13 @@ import smartlock.code.Classes.MyLocation;
 import smartlock.code.Classes.UsersLocations;
 import smartlock.code.R;
 
+/**
+ * This activity shows the user who is actually at home.
+ * the activity requests from the server all the locations of the users that register to the specific door.
+ * after reciving all the locations (user name, alt, lot),
+ * than the activity sets all the location in the map, using google maps api.
+ * the user sees all the door's users locations in different colors, and can see exactly where everyone is.
+ */
 public class WhoIsAtHomeActivity extends FragmentActivity implements OnMapReadyCallback
 {
 
@@ -40,6 +47,7 @@ public class WhoIsAtHomeActivity extends FragmentActivity implements OnMapReadyC
         mapFragment.getMapAsync(this);
     }
 
+    //Set different color for each user
     private void setColors()
     {
         m_Colors[0] = 0.0f;
@@ -53,7 +61,6 @@ public class WhoIsAtHomeActivity extends FragmentActivity implements OnMapReadyC
         m_Colors[8] = 300.0f;
         m_Colors[9] = 330.0f;
     }
-
 
     /**
      * Manipulates the map once available.
