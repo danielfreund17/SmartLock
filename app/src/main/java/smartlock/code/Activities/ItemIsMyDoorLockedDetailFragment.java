@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import smartlock.code.R;
-import smartlock.code.dummy.DoorContent;
+import smartlock.code.DoorsContents.DoorContent;
 
 /**
  * A fragment representing a single Door detail screen.

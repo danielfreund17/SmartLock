@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 
 import smartlock.code.R;
-import smartlock.code.dummy.DoorContent;
+import smartlock.code.DoorsContents.DoorContent;
 
 import java.util.List;
 

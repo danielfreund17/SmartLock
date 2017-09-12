@@ -1,6 +1,4 @@
-package smartlock.code.dummy;
-
-import android.util.Log;
+package smartlock.code.DoorsContents;
 
 import smartlock.code.Operations.IsMyDoorLockedAsyncOperation;
 import smartlock.code.Classes.SmartLockServer;
